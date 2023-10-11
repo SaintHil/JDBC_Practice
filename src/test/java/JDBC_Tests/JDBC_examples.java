@@ -27,7 +27,7 @@ public class JDBC_examples {
         resultSet.beforeFirst();
 
         System.out.println("---------------------------------------------------------------");
-        while (resultSet.next()){
+        while (resultSet.next()) {
 
             System.out.println("customerName: " + resultSet.getString("customerName"));
         }
@@ -71,7 +71,7 @@ public class JDBC_examples {
         System.out.println("resultSetMetaData.getColumnName(1) = " + resultSetMetaData.getColumnName(3));
         System.out.println("resultSetMetaData.getColumnType() = " + resultSetMetaData.getColumnType(4));
 
-        for (int i = 1; i < columnCount +1 ; i++) {
+        for (int i = 1; i <= columnCount; i++) {
 
             System.out.println("column " + i + " " + resultSetMetaData.getColumnName(i));
 
@@ -83,13 +83,33 @@ public class JDBC_examples {
         connection.close();
 
 
+        // --> TASK
         // vt bağlantısını oluşturun
         // customers tablosunda kaçtane satır olduğunu COUNT ifadesi kullanarak getirin
         // bağlantıyı kapatın
 
+    }
+        @Test
+        public void task() throws SQLException {
+
+            Connection connection = DriverManager.getConnection(db_Url, db_userName, db_Password);
+            Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet resultSet = statement.executeQuery("select count(*) from customers;");
+
+
+            resultSet.next();
+            int rowCount = resultSet.getInt(1);
+            // System.out.println("Customers RowCount = " + rowCount);
+            System.out.println("The number of rows = " + resultSet.getInt("count(*)"));
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+
+        }
 
 
     }
 
 
-}
