@@ -67,9 +67,9 @@ public class JDBC_examples {
         System.out.println("columnCount = " + columnCount);
 
         System.out.println("resultSetMetaData.getColumnName(1) = " + resultSetMetaData.getColumnName(1));
-        System.out.println("resultSetMetaData.getColumnName(1) = " + resultSetMetaData.getColumnName(2));
-        System.out.println("resultSetMetaData.getColumnName(1) = " + resultSetMetaData.getColumnName(3));
-        System.out.println("resultSetMetaData.getColumnType() = " + resultSetMetaData.getColumnType(4));
+        System.out.println("resultSetMetaData.getColumnName(2) = " + resultSetMetaData.getColumnName(2));
+        System.out.println("resultSetMetaData.getColumnName(3) = " + resultSetMetaData.getColumnName(3));
+        System.out.println("resultSetMetaData.getColumnType(4) = " + resultSetMetaData.getColumnType(4));
 
         for (int i = 1; i <= columnCount; i++) {
 
@@ -99,8 +99,8 @@ public class JDBC_examples {
 
             resultSet.next();
             int rowCount = resultSet.getInt(1);
-            // System.out.println("Customers RowCount = " + rowCount);
-            System.out.println("The number of rows = " + resultSet.getInt("count(*)"));
+            System.out.println("Customers RowCount = " + rowCount);
+            //System.out.println("The number of rows = " + resultSet.getInt("count(*)"));
 
             resultSet.close();
             statement.close();
