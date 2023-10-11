@@ -29,20 +29,22 @@ public class dynamic_listOfMap {
         // sütün sayısını alalım
         int columnCount = rsmd.getColumnCount();
 
-        while (resultSet.next()){
 
-            Map <String, Object> row = new HashMap<>();
+
+        while (resultSet.next()){  // --> Ne kadar satır olduğunu bilemedeğimiz için "WHILE" döngüsü içerinde satırlar arasında "resultSet.next()" metodu ile ilerliyoruz.
+
+            Map <String, Object> row = new HashMap<>(); // --> Her bir satıra karşılık gelecek mapler oluşturuyoruz.
 
             for (int i = 1; i <= columnCount ; i++) {
-                row.put(rsmd.getColumnName(i), resultSet.getObject(i));
+                row.put(rsmd.getColumnName(i), resultSet.getObject(i));// Oluşturduğumuz mapler içerisine  sütün isimleri ve sütunlara karşılık gelen bilgileri "FOR" döngüsüyle yazdırıyoruz
             }
 
-            queryData.add(row);
+            queryData.add(row); // --> oluşturduğumuz queryData listininin içerisine maplerimiz ekliyoruz
 
         }
 
 
-        // list içerisindeki herbir sütunu bastıralım
+        // list içerisindeki herbir sütunu (map) bastıralım
 
         for (Map<String, Object> eachRow : queryData) {
 
@@ -51,7 +53,7 @@ public class dynamic_listOfMap {
         }
 
 
-        // vt bağlantımızı kapatalım
+        // veritabanı bağlantımızı kapatalım
 
         resultSet.close();
         statement.close();
